@@ -31,7 +31,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
+// This class isn't used yet
 public class AtkPolygon extends FragmentActivity implements OnMapClickListener,
 		OnMarkerDragListener, OnMarkerClickListener {
 
