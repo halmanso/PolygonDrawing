@@ -308,7 +308,7 @@ public class AtkMapWidget {
 		else index--;
 		return index;
 	}
-	public int getIndex(){
+	private int getIndex(){
 		int index = 0;
 		if(mkr != null){
 			if(mkr.size() != 0){
