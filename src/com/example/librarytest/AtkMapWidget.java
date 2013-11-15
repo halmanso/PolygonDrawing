@@ -35,6 +35,7 @@ public class AtkMapWidget {
 	private int shift = 0;
 	private float h, w;
 	private AtkMapWidgetListener listener;
+	private boolean EnablePop = true;
 	public int index,nextIndex,prevIndex,oldNextIndex,oldPreviousIndex;
 
 
@@ -77,7 +78,6 @@ public class AtkMapWidget {
 		setNextMarkerSelection();
 		setPreviousMarkerSelection();
 	}
-	
 	private void setTrack(){
 		trackpad.setOnTouchListener(new View.OnTouchListener() {
 			Point pmkr = new Point();
@@ -212,6 +212,9 @@ public class AtkMapWidget {
 	public void hidePop(){
 		resetrl();
 	}
+	public void EnablePop(boolean EnablePop){
+		this.EnablePop = EnablePop;
+	}
 	public void ClearAtkMapWidget(){
 		//clearing all added views
 		rel.removeView(trackpad);
@@ -266,18 +269,20 @@ public class AtkMapWidget {
 	}
 	private void mvScreen() {
 		//update location of magnifying window
-		fixBearing();
-		mapf.getMap().moveCamera(
-				CameraUpdateFactory.newLatLngZoom(mkr1
-						.getPosition(), map.getCameraPosition().zoom + 2));
-		rel2.setX(map.getProjection().toScreenLocation(
-				mkr1.getPosition()).x
-				- 78 * dens);
-		rel2.setY(map.getProjection().toScreenLocation(
-				mkr1.getPosition()).y
-				- 170 * dens);
-		rel3.setX(rel2.getX());
-		rel3.setY(rel2.getY());
+		if(EnablePop){
+			fixBearing();
+			mapf.getMap().moveCamera(
+					CameraUpdateFactory.newLatLngZoom(mkr1
+							.getPosition(), map.getCameraPosition().zoom + 2));
+			rel2.setX(map.getProjection().toScreenLocation(
+					mkr1.getPosition()).x
+					- 78 * dens);
+			rel2.setY(map.getProjection().toScreenLocation(
+					mkr1.getPosition()).y
+					- 170 * dens);
+			rel3.setX(rel2.getX());
+			rel3.setY(rel2.getY());
+		}
 	}
 	private Button addbutton(Button btn, int dr, int height, int width,
 			float x, float y) {
